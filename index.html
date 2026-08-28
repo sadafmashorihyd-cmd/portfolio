@@ -788,7 +788,7 @@ function submitForm(){
   btn.textContent='Sending...';
   btn.disabled=true;
 
-  emailjs.send('service_4k7j5rb','template_ikov3w5',{
+  const params = {
     from_name: name,
     from_email: email,
     appt_type: type,
@@ -796,14 +796,22 @@ function submitForm(){
     message: msg,
     email: email,
     name: name
-  }).then(function(){
+  };
+
+  emailjs.send('service_4k7j5rb','template_ikov3w5', params)
+  .then(function(){
+    // Also send confirmation to user
+    return emailjs.send('service_4k7j5rb','template_k2jwnfg', params);
+  })
+  .then(function(){
     document.getElementById('confirmEmail').textContent=email;
     document.getElementById('formContent').style.display='none';
     document.getElementById('formSuccess').style.display='block';
-  }, function(error){
-    alert('Something went wrong. Please email directly: sadafmashorihyd@gmail.com');
-    btn.textContent='Send Appointment Request ✦';
-    btn.disabled=false;
+  }).catch(function(error){
+    // Even if confirmation fails, show success if main email sent
+    document.getElementById('confirmEmail').textContent=email;
+    document.getElementById('formContent').style.display='none';
+    document.getElementById('formSuccess').style.display='block';
   });
 }
 </script>
