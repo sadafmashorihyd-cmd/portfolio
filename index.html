@@ -268,10 +268,12 @@ footer span{color:var(--purple-light);}
   .stats-row{grid-template-columns:1fr 1fr;}
 }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>emailjs.init("p9x8zNTfNTDytugR5");</script>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>emailjs.init("p9x8zNTfNTDytugR5");</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function(){
+    emailjs.init({publicKey: "p9x8zNTfNTDytugR5"});
+  })();
+</script>
 </head>
 <body>
 
